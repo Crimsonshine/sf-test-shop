@@ -43,7 +43,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $zipcode;
 
     #[ORM\Column(type: 'boolean')]
-    private $isDeleted = false;
+    private $isDeleted;
+
+    public function __construct()
+    {
+        $this->isDeleted = false;
+    }
 
     public function getId(): ?int
     {
