@@ -28,7 +28,7 @@ class DefaultController extends AbstractController
 
     #[Route('/edit-product/{id}', name: 'product_edit', requirements: ['id' => '\d+'])]
     #[Route('/add-product', name: 'product_add')]
-    public function editProduct(Request $request,ManagerRegistry $doctrine, int $id = null): Response
+    public function editProduct(Request $request, ManagerRegistry $doctrine, int $id = null): Response
     {
         $entityManager = $doctrine->getManager();
 
