@@ -34,7 +34,6 @@ class AddUserCommand extends Command
         $this->userRepository = $userRepository;
     }
 
-
     protected function configure(): void
     {
         $this
