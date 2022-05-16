@@ -3,8 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Category;
-use App\Form\EditCategoryFromType;
+use App\Form\Admin\EditCategoryFromType;
+use App\Form\DTO\EditCategoryModel;
+use App\Form\Handler\CategoryFormHandler;
 use App\Repository\CategoryRepository;
+use App\Utils\Manager\CategoryManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +19,7 @@ class CategoryController extends AbstractController
     #[Route('/list', name: 'list')]
     public function list(CategoryRepository $categoryRepository): Response
     {
-        $categories = $categoryRepository->findBy([], ['id'=>'ASC']);
+        $categories = $categoryRepository->findBy(['isDeleted'=> false], ['id'=>'ASC']);
         return $this->render('admin/category/list.html.twig', [
             'categories' => $categories
         ]);
@@ -24,16 +27,23 @@ class CategoryController extends AbstractController
 
     #[Route('/edit/{id}', name: 'edit')]
     #[Route('/add', name: 'add')]
-    public function edit(Request $request, Category $category = null): Response
+    public function edit(Request $request, CategoryFormHandler $categoryFormHandler, Category $category = null): Response
     {
-        if (!$category) {
-            $category = new Category();
-        }
+        $editCategoryModel = EditCategoryModel::makeFromCategory($category);
 
-        $form = $this->createForm(EditCategoryFromType::class, $category);
+        $form = $this->createForm(EditCategoryFromType::class, $editCategoryModel);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $category = $categoryFormHandler->processEditForm($editCategoryModel);
+
+            $this->addFlash('success', 'Ваши изменения сохранены!');
+
+            return $this->redirectToRoute('admin_category_edit', ['id' => $category->getId()]);
+        }
+
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash('success', 'Что-то пошло не так. Пожалуйста проверьте форму!');
         }
 
         return $this->render('admin/category/edit.html.twig', [
@@ -43,8 +53,11 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/delete/{id}', name: 'delete')]
-    public function delete(Category $category): Response
+    public function delete(Category $category, CategoryManager $categoryManager): Response
     {
-        //
+        $categoryManager->remove($category);
+        $this->addFlash('success', 'Категория была успешно удалена!');
+
+        $this->redirectToRoute('admin_category_list');
     }
 }

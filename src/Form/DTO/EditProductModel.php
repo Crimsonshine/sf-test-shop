@@ -2,6 +2,7 @@
 
 namespace App\Form\DTO;
 
+use App\Entity\Category;
 use App\Entity\Product;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -46,6 +47,12 @@ class EditProductModel
     public $description;
 
     /**
+     * @var Category
+     */
+    #[Assert\NotBlank(message: 'Пожалуйста выберете категорию')]
+    public $category;
+
+    /**
      * @var bool
      */
     public $isPublished;
@@ -55,6 +62,10 @@ class EditProductModel
      */
     public $isDeleted;
 
+    /**
+     * @param Product|null $product
+     * @return static
+     */
     public static function makeFromProduct(?Product $product): self
     {
         $model = new self();
