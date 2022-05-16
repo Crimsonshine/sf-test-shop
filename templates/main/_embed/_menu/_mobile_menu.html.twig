@@ -5,38 +5,34 @@
     <nav class="mobile-nav">
         <ul class="mobile-menu">
             <li class="menu-item">
-                <a href="#">
-                    <div>Jeans</div>
+                <a href="{{ path('main_category_show', {'slug': 'bytovaia-tekhnika'}) }}">
+                    <div>Бытовая техника</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ path('main_category_show', {'slug': 'kompiutery-i-komplektuiushchie'}) }}">
+                    <div>Компьютеры</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ path('main_category_show', {'slug': 'smartfony'}) }}">
+                    <div>Смартфоны</div>
                 </a>
             </li>
             <li class="menu-item">
                 <a href="#">
-                    <div>Hats</div>
+                    <div>Офис</div>
                 </a>
             </li>
-            <li class="menu-item">
-                <a href="#">
-                    <div>Jackets</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="#">
-                    <div>Dresses</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="#">
-                    <div>Sneakers</div>
-                </a>
-            </li>
+
             <li class="menu-item font-weight-bold">
                 <a href="{{ path('main_login') }}">
-                    <div>Login</div>
+                    <div>Войти</div>
                 </a>
             </li>
             <li class="menu-item font-weight-bold">
                 <a href="#">
-                    <div>Cart</div>
+                    <div>Корзина</div>
                 </a>
             </li>
         </ul>

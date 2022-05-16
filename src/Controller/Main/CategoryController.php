@@ -19,7 +19,6 @@ class CategoryController extends AbstractController
 
         $products = $category->getProducts()->getValues();
 
-
         return $this->render('main/category/show.html.twig', [
             'category' => $category,
             'products' => $products

@@ -1,8 +1,8 @@
 {% extends 'main/base.html.twig' %}
 
-{% block title %}{{ category.title }} - RankedChoice{% endblock %}
-{% block page_keywords %}Jeans, Ranked Choice Homepage, Jackets{% endblock %}
-{% block page_description %}Category page of RankedChoice shop!{% endblock %}
+{% block title %}{{ category.title }}{% endblock %}
+{% block page_keywords %}{% endblock %}
+{% block page_description %}{% endblock %}
 
 {% block body %}
     <div class="text-center">
@@ -27,7 +27,7 @@
                                     <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                                         <div class="product-item">
                                             <figure class="product-media">
-                                                <span class="product-sale-status sale-status-new">New</span>
+                                                <span class="product-sale-status sale-status-new">Новинка</span>
                                                 <a href="{{ path('main_product_show', {'uuid': product.uuid}) }}">
                                                     <img src="{{ asset('uploads/images/products/' ~ product.id ~ '/' ~ cover.filenameMiddle) }}"
                                                          alt="{{ product.title }}"
@@ -35,7 +35,7 @@
                                                 </a>
                                                 <div class="product-actions">
                                                     <a href="#" class="btn-add-to-cart">
-                                                        add to cart
+                                                        Добавить в корзину
                                                     </a>
                                                 </div>
                                             </figure>
@@ -44,7 +44,7 @@
                                                     <a href="{{ path('main_product_show', {'uuid': product.uuid}) }}">{{ product.title }}</a>
                                                 </h3>
                                                 <div class="product-price justify-content-center">
-                                                    {{ product.price }}
+                                                    {{ product.price }} ₽
                                                 </div>
                                             </div>
                                         </div>

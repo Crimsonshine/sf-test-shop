@@ -63,7 +63,7 @@ class EditProductFormType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'title',
                 'attr' => [
-                    'class' => 'form-control-file'
+                    'class' => 'form-control'
                 ]
             ])
             ->add('newImage', FileType::class, [

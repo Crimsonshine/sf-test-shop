@@ -23,9 +23,6 @@ class ProfileEditFormType extends AbstractType
             ->add('address', TextType::class, [
                 'label' => 'Адрес'
             ])
-            ->add('zipcode', IntegerType::class, [
-                'label' => 'Зипкод'
-            ])
         ;
     }
 
