@@ -1,6 +1,6 @@
 {% extends 'main/base.html.twig' %}
 
-{% block title %}Sign Up - RankedChoice{% endblock %}
+{% block title %}Регистрация{% endblock %}
 
 {% block body %}
     <div class="page-content pt-4 pb-4">
@@ -27,18 +27,20 @@
 
                         <div class="form-footer">
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-3">
                                     <button type="submit" class="btn btn btn-success">
-                                        SIGN UP
+                                        Зарегистрироваться
                                     </button>
-                                </div>
-                                <div class="col-lg-8">
+
+                                    <div class="col-lg-8">
                                     <div class="custom-control custom-checkbox">
                                         {{ form_widget(registrationForm.agreeTerms) }}
                                         {{ form_label(registrationForm.agreeTerms) }}
                                         {{ form_errors(registrationForm.agreeTerms) }}
                                     </div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
 

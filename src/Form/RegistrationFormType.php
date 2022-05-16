@@ -20,12 +20,12 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'E-mail:',
+                'label' => 'E-mail',
                 'required' => true,
                 'attr' => [
                     'class' => 'form-control',
                     'autofocus' => 'autofocus',
-                    'placeholder' => 'Пожалуйста введите ваш почтовый ящик'
+                    'placeholder' => 'Введите ваш почтовый ящик'
                 ],
                 'constraints' => [
                     new NotBlank([
@@ -42,7 +42,8 @@ class RegistrationFormType extends AbstractType
                 'label_html' => true,
                 'mapped' => false,
                 'attr' => [
-                    'class' => 'custom-control-input'
+                    'class' => 'custom-control-input',
+                    'style' => 'width: 1px'
                 ],
                 'label_attr' => [
                     'class' => 'custom-control-label'
@@ -54,7 +55,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                'label' => 'Пароль:',
+                'label' => 'Пароль',
                 'required' => false,
                 'mapped' => false,
                 'attr' => [

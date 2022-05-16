@@ -1,12 +1,12 @@
 {% extends 'admin/layout/layout_main.html.twig' %}
 
-{% block title_detailed %}Edit Product{% endblock %}
+{% block title_detailed %}Редактировать товар{% endblock %}
 
 {% block body %}
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             {% include 'admin/_embed/_card/_breadcrumbs.html.twig' with {
-                'sectionTitle': 'Products',
+                'sectionTitle': 'Товары',
                 'actionUrl': path('admin_product_list'),
                 'addActionUrl': path('admin_product_add'),
                 'entity': product
@@ -34,7 +34,9 @@
                     Slug
                 </div>
                 <div class="col-md-11">
-                    {{ product.slug }}
+                    {% if product %}
+                        {{ product.slug }}
+                    {% endif %}
                 </div>
             </div>
 
@@ -141,7 +143,7 @@
         </div>
     </div>
 
-    {% if product.id %}
+    {% if product and product.id %}
         {% include 'admin/_embed/_utils/_modal.html.twig' with {
             'modalId': 'approveDeleteModal',
             'modalTitle': 'Вы уверены?',
