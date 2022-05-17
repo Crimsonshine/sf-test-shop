@@ -26,7 +26,18 @@
     {% include 'main/_embed/_footer.html.twig' %}
 </div>
 
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('build/axios.min.js') }}"></script>
+    <script>
+        const urlSaveProductToCart = '{{ path("main_api_cart_save") }}';
+
+        function addProductToCart(uuid) {
+            const formData = new FormData();
+            formData.append('productId', uuid);
+            axios.post(urlSaveProductToCart, formData);
+        }
+    </script>
+{% endblock %}
 </body>
 </html>
 
